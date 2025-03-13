@@ -26,17 +26,14 @@ public class Test {
         EmpruntService empruntService = new EmpruntService();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
-        // 📚 Création des livres
         System.out.println("Ajout de livres...");
         ls.create(new Livre(0, "Le Petit Prince", "Antoine de Saint-Exupéry", "Conte philosophique", true));
         ls.create(new Livre(0, "1984", "George Orwell", "Science-fiction", true));
 
-        // 🎓 Création des étudiants
         System.out.println("Ajout d'étudiants...");
         es.create(new Etudiant("Ouaday", "Sara", "S.ouaday@gmail.com"));
         es.create(new Etudiant("Saab", "Hajar", "H.saab@gmail.com"));
 
-        // 🔄 Récupération des livres et étudiants depuis la BD
         List<Livre> livres = ls.findAll();
         List<Etudiant> etudiants = es.findAll();
 
@@ -45,34 +42,28 @@ public class Test {
             return;
         }
 
-        // 📚 Sélection d’un livre et étudiant pour le test
-        Livre livre = livres.get(0); // Prend le premier livre
-        Etudiant etudiant = etudiants.get(0); // Prend le premier étudiant
+        Livre livre = livres.get(0); 
+        Etudiant etudiant = etudiants.get(0); 
 
-        // 🛠 Mise à jour du livre
         System.out.println("Mise à jour du livre : " + livre.getTitre());
         livre.setTitre("Nineteen Eighty-Four");
         ls.update(livre);
 
-        // 🗑 Suppression d’un étudiant
-        Etudiant etudiantASupprimer = es.findById(etudiants.get(1).getId()); // Prend le deuxième étudiant
+        Etudiant etudiantASupprimer = es.findById(etudiants.get(1).getId()); 
         if (etudiantASupprimer != null) {
             System.out.println("Suppression de l'étudiant: " + etudiantASupprimer.getNom());
             es.delete(etudiantASupprimer);
         }
 
-        // 📅 Gestion des emprunts
         System.out.println("\nTest des emprunts...");
         EmpruntLivre emprunt = new EmpruntLivre(livre.getId(), etudiant.getId(), sdf.parse("15-03-2025"), null);
         empruntService.create(emprunt);
         System.out.println("Emprunt enregistré pour le livre : " + livre.getTitre());
 
-        // 🕒 Mise à jour de l'emprunt (ajout de la date de retour)
         emprunt.setDateRetour(sdf.parse("30-03-2025"));
         empruntService.update(emprunt);
         System.out.println("Date de retour mise à jour : " + sdf.format(emprunt.getDateRetour()));
 
-        // 📋 Affichage des emprunts
         System.out.println("Liste des emprunts en base:");
         for (EmpruntLivre e : empruntService.findAll()) {
             String dateRetour = e.getDateRetour() != null ? sdf.format(e.getDateRetour()) : "Non retourné";
@@ -85,5 +76,3 @@ public class Test {
         System.out.println("\n✅ Tests terminés avec succès !");
     }
 }
-
-

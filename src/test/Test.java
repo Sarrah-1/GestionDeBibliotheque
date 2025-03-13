@@ -73,6 +73,6 @@ public class Test {
                                " - Date de retour: " + dateRetour);
         }
 
-        System.out.println("\n✅ Tests terminés avec succès !");
+        System.out.println("\n Tests terminés avec succès !");
     }
 }

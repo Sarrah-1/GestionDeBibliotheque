@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/JDBC/JDBC/src/beans/EStatut.java</file>
+            <file>file:/D:/JDBC/JDBC/src/services/EtudiantService.java</file>
+            <file>file:/D:/JDBC/JDBC/src/services/LivreService.java</file>
+            <file>file:/D:/JDBC/JDBC/src/beans/Etudiant.java</file>
+            <file>file:/D:/JDBC/JDBC/src/connexion/Connexion.java</file>
+            <file>file:/D:/JDBC/JDBC/src/beans/Livre.java</file>
+            <file>file:/D:/JDBC/JDBC/src/test/Test.java</file>
+            <file>file:/D:/JDBC/JDBC/src/services/EmpruntService.java</file>
+            <file>file:/D:/JDBC/JDBC/src/beans/EmpruntLivre.java</file>
+        </group>
+    </open-files>
+</project-private>

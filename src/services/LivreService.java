@@ -35,7 +35,7 @@ public class LivreService implements IDao<Livre> {
     public boolean delete(Livre o) {
         String req = "delete from livre where id = ?";
         try {
-        	PreparedStatement ps = connexion.getCn().prepareStatement(req);
+            PreparedStatement ps = connexion.getCn().prepareStatement(req);
             ps.setInt(1, o.getId());
             ps.executeUpdate();
             return true;

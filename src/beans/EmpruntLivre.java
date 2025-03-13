@@ -1,15 +1,15 @@
 package beans;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class EmpruntLivre {
     private int id;
     private int livreId;
     private int etudiantId;
-    private LocalDate dateEmprunt;
-    private LocalDate dateRetour;
+    private Date dateEmprunt;
+    private Date dateRetour;
 
-    public EmpruntLivre(int id, int livreId, int etudiantId, LocalDate dateEmprunt, LocalDate dateRetour) {
+    public EmpruntLivre(int id, int livreId, int etudiantId, Date dateEmprunt, Date dateRetour) {
         this.id = id;
         this.livreId = livreId;
         this.etudiantId = etudiantId;
@@ -17,7 +17,7 @@ public class EmpruntLivre {
         this.dateRetour = dateRetour;
     }
 
-    public EmpruntLivre(int livreId, int etudiantId, LocalDate dateEmprunt, LocalDate dateRetour) {
+    public EmpruntLivre(int livreId, int etudiantId, Date dateEmprunt, Date dateRetour) {
         this.livreId = livreId;
         this.etudiantId = etudiantId;
         this.dateEmprunt = dateEmprunt;
@@ -48,19 +48,19 @@ public class EmpruntLivre {
         this.etudiantId = etudiantId;
     }
 
-    public LocalDate getDateEmprunt() {
+    public Date getDateEmprunt() {
         return dateEmprunt;
     }
 
-    public void setDateEmprunt(LocalDate dateEmprunt) {
+    public void setDateEmprunt(Date dateEmprunt) {
         this.dateEmprunt = dateEmprunt;
     }
 
-    public LocalDate getDateRetour() {
+    public Date getDateRetour() {
         return dateRetour;
     }
 
-    public void setDateRetour(LocalDate dateRetour) {
+   public void setDateRetour(Date dateRetour) {
         this.dateRetour = dateRetour;
     }
 }

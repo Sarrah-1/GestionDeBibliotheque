@@ -21,8 +21,8 @@ public class EmpruntService implements IDao<EmpruntLivre> {
 			PreparedStatement ps = connexion.getCn().prepareStatement(req);
 			ps.setInt(1, o.getLivreId());
 			ps.setInt(2, o.getEtudiantId());
-			ps.setDate(3, Date.valueOf(o.getDateEmprunt()));
-			ps.setDate(4, Date.valueOf(o.getDateRetour()));
+		        ps.setDate(3, new java.sql.Date(o.getDateEmprunt().getTime()));
+                        ps.setDate(4, new java.sql.Date(o.getDateRetour().getTime()));   
 			ps.executeUpdate();
 			return true;
 		} catch (SQLException ex) {
@@ -52,8 +52,8 @@ public class EmpruntService implements IDao<EmpruntLivre> {
 			PreparedStatement ps = connexion.getCn().prepareStatement(req);
 			ps.setInt(1, o.getLivreId());
 			ps.setInt(2, o.getEtudiantId());
-			ps.setDate(3, Date.valueOf(o.getDateEmprunt()));
-			ps.setDate(4, Date.valueOf(o.getDateRetour()));
+			ps.setDate(3, new java.sql.Date(o.getDateEmprunt().getTime()));
+                        ps.setDate(4, new java.sql.Date(o.getDateRetour().getTime()));
 			ps.setInt(5, o.getId());
 			ps.executeUpdate();
 			return true;
@@ -72,7 +72,7 @@ public class EmpruntService implements IDao<EmpruntLivre> {
 			ResultSet rs = ps.executeQuery();
 			if (rs.next())
 				return new EmpruntLivre(rs.getInt("id"), rs.getInt("livre_id"), rs.getInt("etudiant_id"),
-						rs.getDate("date_emprunt").toLocalDate(), rs.getDate("date_retour").toLocalDate());
+                        rs.getDate("date_emprunt"), rs.getDate("date_retour"));
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 		}
@@ -87,10 +87,10 @@ public class EmpruntService implements IDao<EmpruntLivre> {
 		try {
 			PreparedStatement ps = connexion.getCn().prepareStatement(req);
 			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				emprunts.add(new EmpruntLivre(rs.getInt("id"), rs.getInt("livre_id"), rs.getInt("etudiant_id"),
-						rs.getDate("date_emprunt").toLocalDate(), rs.getDate("date_retour").toLocalDate()));
-			}
+                        while (rs.next()) {
+                        emprunts.add(new EmpruntLivre(rs.getInt("id"), rs.getInt("livre_id"), rs.getInt("etudiant_id"),
+                           rs.getDate("date_emprunt"), rs.getDate("date_retour"))); // Récupérer Date sans conversion
+                        }
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 		}

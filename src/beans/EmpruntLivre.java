@@ -3,49 +3,25 @@ package beans;
 import java.util.Date;
 
 public class EmpruntLivre {
-    private int id;
-    private int livreId;
-    private int etudiantId;
+    private EStatut statut;
     private Date dateEmprunt;
     private Date dateRetour;
+    private Livre livre;
+    private Etudiant etudiant;
 
-    public EmpruntLivre(int id, int livreId, int etudiantId, Date dateEmprunt, Date dateRetour) {
-        this.id = id;
-        this.livreId = livreId;
-        this.etudiantId = etudiantId;
+    public EmpruntLivre(EStatut statut, Date dateEmprunt, Date dateRetour,Livre livre, Etudiant etudiant ) {
+        this.statut = statut;
         this.dateEmprunt = dateEmprunt;
         this.dateRetour = dateRetour;
+        this.livre = livre;
+        this.etudiant = etudiant;
+    }
+    public EStatut getStatut() {
+        return statut;
     }
 
-    public EmpruntLivre(int livreId, int etudiantId, Date dateEmprunt, Date dateRetour) {
-        this.livreId = livreId;
-        this.etudiantId = etudiantId;
-        this.dateEmprunt = dateEmprunt;
-        this.dateRetour = dateRetour;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getLivreId() {
-        return livreId;
-    }
-
-    public void setLivreId(int livreId) {
-        this.livreId = livreId;
-    }
-
-    public int getEtudiantId() {
-        return etudiantId;
-    }
-
-    public void setEtudiantId(int etudiantId) {
-        this.etudiantId = etudiantId;
+    public void setStatut(EStatut statut) {
+        this.statut = statut;
     }
 
     public Date getDateEmprunt() {
@@ -60,7 +36,25 @@ public class EmpruntLivre {
         return dateRetour;
     }
 
-   public void setDateRetour(Date dateRetour) {
+    public void setDateRetour(Date dateRetour) {
         this.dateRetour = dateRetour;
+    }
+
+    public Livre getLivre() {
+        return livre;
+    }
+
+    public void setLivre(Livre Livre) {
+        this.livre = Livre;
+    }
+
+    public Etudiant getEtudiant() {
+        return etudiant;
+    }
+    public int getLivreId() {
+    return livre != null ? livre.getId() : -1; // Retourne -1 si le livre est null
+    }
+    public void setEtudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
     }
 }

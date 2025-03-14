@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package test;
 
 import java.util.List;
@@ -31,8 +30,8 @@ public class Test {
         ls.create(new Livre(0, "1984", "George Orwell", "Science-fiction", true));
 
         System.out.println("Ajout d'étudiants...");
-        es.create(new Etudiant("Ouaday", "Sara", "S.ouaday@gmail.com"));
-        es.create(new Etudiant("Saab", "Hajar", "H.saab@gmail.com"));
+        es.create(new Etudiant("Ouaaday", "Sara", "S.ouaaday@gmail.com"));
+        es.create(new Etudiant("Saabe", "Hajaar", "H.saabe@gmail.com"));
 
         List<Livre> livres = ls.findAll();
         List<Etudiant> etudiants = es.findAll();
@@ -46,7 +45,7 @@ public class Test {
         Etudiant etudiant = etudiants.get(0); 
 
         System.out.println("Mise à jour du livre : " + livre.getTitre());
-        livre.setTitre("Nineteen Eighty-Four");
+        livre.setTitre("livre Test");
         ls.update(livre);
 
         Etudiant etudiantASupprimer = es.findById(etudiants.get(1).getId()); 

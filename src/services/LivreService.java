@@ -18,7 +18,8 @@ public class LivreService implements IDao<Livre> {
     public boolean create(Livre o) {
         String req = "insert into livre (titre, auteur, categorie, disponible) values (?, ?, ?, ?)";
         try {
-        	PreparedStatement ps = connexion.getCn().prepareStatement(req);
+            PreparedStatement ps = connexion.getCn().prepareStatement(req);
+            
             ps.setString(1, o.getTitre());
             ps.setString(2, o.getAuteur());
             ps.setString(3, o.getCategorie());

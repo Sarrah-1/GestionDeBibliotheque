@@ -9,22 +9,29 @@ import java.util.List;
 
 public class EmpruntService implements IDao<EmpruntLivre> {
 	private Connexion connexion;
-
+        private LivreService lvs;
+        private EtudiantService es;
+       
 	public EmpruntService() {
 		connexion = Connexion.getInstance();
+                lvs = new LivreService();
+                es = new EtudiantService();
+                
 	}
 
 	@Override
 	public boolean create(EmpruntLivre o) {
-		String req = "insert into emprunt_livre (livre_id, etudiant_id, date_emprunt, date_retour) values (?, ?, ?, ?)";
+		String req = "insert into emprunt_livre (statut, dateEmprunt, dateRetour, etudiant_id, livre_id) values (?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = connexion.getCn().prepareStatement(req);
-			ps.setInt(1, o.getLivreId());
-			ps.setInt(2, o.getEtudiantId());
-		        ps.setDate(3, new java.sql.Date(o.getDateEmprunt().getTime()));
-                        ps.setDate(4, new java.sql.Date(o.getDateRetour().getTime()));   
-			ps.executeUpdate();
-			return true;
+                        ps.setInt(1, o.getStatut().ordinal());
+                        ps.setDate(2, new java.sql.Date(o.getDateEmprunt().getTime())); 
+                        ps.setDate(3, o.getDateRetour() != null ? new java.sql.Date(o.getDateRetour().getTime()) : null); 
+                        ps.setInt(4, o.getEtudiant());  
+                        ps.setInt(5, o.getLivreId());  
+        
+                        ps.executeUpdate(); 
+                        return true;
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 		}
@@ -33,10 +40,10 @@ public class EmpruntService implements IDao<EmpruntLivre> {
 
 	@Override
 	public boolean delete(EmpruntLivre o) {
-		String req = "delete from emprunt_livre where id = ?";
+		String req = "delete from emprunt_livre where id = ? AND etudiant_id = ?";
 		try {
 			PreparedStatement ps = connexion.getCn().prepareStatement(req);
-			ps.setInt(1, o.getId());
+                        ps.setInt(2, o.getEtudiant().getId());
 			ps.executeUpdate();
 			return true;
 		} catch (SQLException ex) {
@@ -88,8 +95,7 @@ public class EmpruntService implements IDao<EmpruntLivre> {
 			PreparedStatement ps = connexion.getCn().prepareStatement(req);
 			ResultSet rs = ps.executeQuery();
                         while (rs.next()) {
-                        emprunts.add(new EmpruntLivre(rs.getInt("id"), rs.getInt("livre_id"), rs.getInt("etudiant_id"),
-                           rs.getDate("date_emprunt"), rs.getDate("date_retour"))); // Récupérer Date sans conversion
+                        emprunts.add(new EmpruntLivre(rs.getInt("id"), rs.getInt("livre_id"), rs.getInt("etudiant_id"), rs.getDate("date_emprunt"), rs.getDate("date_retour")));
                         }
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());

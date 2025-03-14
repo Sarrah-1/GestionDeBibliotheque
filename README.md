@@ -5,12 +5,14 @@ CREATE TABLE Livre (
     categorie VARCHAR(100) NOT NULL,
     disponible BOOLEAN NOT NULL DEFAULT TRUE
 );
+
 CREATE TABLE Etudiant (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(50) NOT NULL,
     prenom VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE
 );
+
 CREATE TABLE EmpruntLivre (
     id INT PRIMARY KEY AUTO_INCREMENT,
     livre_id INT,

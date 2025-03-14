@@ -24,7 +24,7 @@ public class Test {
     //private static Object sdf;
 
     public static void main(String[] args) throws ParseException {
-        LivreService ls = new LivreService();
+        
 
         EtudiantService es = new EtudiantService();
 
@@ -46,7 +46,8 @@ public class Test {
         for (Etudiant et : es.findAll()) {
             System.out.println("   " + et.getNom());
         }
-
+        LivreService ls = new LivreService();
+        
         ls.create(new Livre(0, "Le Petit Prince", "Antoine de Saint-Exupéry", "Conte philosophique", true));
         ls.create(new Livre(0, "1984", "George Orwell", "Science-fiction", true));
 

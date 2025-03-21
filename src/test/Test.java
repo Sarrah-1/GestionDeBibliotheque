@@ -10,6 +10,7 @@ import beans.EStatut;
 import beans.EmpruntLivre;
 import beans.Etudiant;
 import beans.Livre;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import services.EmpruntService;
@@ -17,6 +18,9 @@ import services.EtudiantService;
 import services.LivreService;
 
 public class Test {
+    //private static Object sdf;
+
+    //public static void main(String[] args) throws ParseException {
 
     public static void main(String[] args) {
         EtudiantService es = new EtudiantService();
@@ -24,12 +28,17 @@ public class Test {
         EmpruntService emps = new EmpruntService();
 
         if (ls.findById(1) == null) {
-            ls.create(new Livre("Les Misérables", "Victor Hugo", ECategorie.roman, true));
+            ls.create(new Livre("Les Misérables", "Victor Hugo", ECategorie.ROMAN, true));
         }
 
         es.create(new Etudiant("ouaday ", "sara", "s.ouaday@gmail.com"));
         es.create(new Etudiant("saab", "hajar", "h.saab@gmail.com"));
         es.create(new Etudiant("roma", "mouna", "m.roma@gmail.com"));
+        //LivreService ls = new LivreService();
+        
+        
+        ls.create(new Livre(0, "Le Petit Prince", "Antoine de Saint-Exupéry", ECategorie.CONTE, true));
+        ls.create(new Livre(0, "1984", "George Orwell", ECategorie.NOUVELLE, true));
 
         Livre livre = ls.findById(1);
 
@@ -89,7 +98,7 @@ public class Test {
             System.out.println("Aucun livre trouvé pour ce Titre.");
         }
 
-        List<EmpruntLivre> empruntsFiltrés = emps.findEmpruntsByCategorie(ECategorie.roman);
+        List<EmpruntLivre> empruntsFiltrés = emps.findEmpruntsByCategorie(ECategorie.ROMAN);
         if (empruntsFiltrés.isEmpty()) {
             System.out.println("Aucun emprunt trouvé pour cette catégorie");
         } else {

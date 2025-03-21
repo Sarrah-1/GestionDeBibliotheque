@@ -5,69 +5,108 @@
  */
 package test;
 
+import beans.ECategorie;
+import beans.EStatut;
+import beans.EmpruntLivre;
+import beans.Etudiant;
+import beans.Livre;
+import java.util.Date;
 import java.util.List;
 import services.EmpruntService;
-import services.LivreService;
 import services.EtudiantService;
-import beans.Livre;
-import beans.EStatut;
-import beans.Etudiant;
-import beans.EmpruntLivre;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import services.LivreService;
 
-/**
- *
- * @author hp
- */
 public class Test {
-    //private static Object sdf;
 
-    public static void main(String[] args) throws ParseException {
-        LivreService ls = new LivreService();
-
+    public static void main(String[] args) {
         EtudiantService es = new EtudiantService();
+        LivreService ls = new LivreService();
+        EmpruntService emps = new EmpruntService();
 
-        EmpruntService ems = new EmpruntService();
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-
-        es.create(new Etudiant("salma", "Sara", "S.salma@gmail.com"));
-        es.create(new Etudiant("imane", "Hajaar", "H.imane@gmail.com"));
-        es.delete(es.findById(2));
-
-        Etudiant e = es.findById(1);
-        e.setNom("Amal");
-        e.setPrenom("Raji");
-        e.setEmail("amal@gmail.com");
-        es.update(e);
-
-        System.out.println("Etudiant : ");
-        for (Etudiant et : es.findAll()) {
-            System.out.println("   " + et.getNom());
+        if (ls.findById(1) == null) {
+            ls.create(new Livre("Les Misérables", "Victor Hugo", ECategorie.roman, true));
         }
 
-        ls.create(new Livre(0, "Le Petit Prince", "Antoine de Saint-Exupéry", "Conte philosophique", true));
-        ls.create(new Livre(0, "1984", "George Orwell", "Science-fiction", true));
+        es.create(new Etudiant("ouaday ", "sara", "s.ouaday@gmail.com"));
+        es.create(new Etudiant("saab", "hajar", "h.saab@gmail.com"));
+        es.create(new Etudiant("roma", "mouna", "m.roma@gmail.com"));
 
-        //Livre livredelete = ls.findById(2);
-        Livre livre1 = ls.findById(1);
-        if (livre1 != null) {
-            livre1.setTitre("livre Test");
-            ls.update(livre1);
+        Livre livre = ls.findById(1);
+
+        if (livre != null && livre.isDisponible()) {
+            System.out.println("Livre trouvé: " + livre.getTitre() + " " + livre.getAuteur() + " " + livre.getCategorie());
+        } else {
+            System.out.println("Livre non trouvé ou emprunté!");
         }
 
-        System.out.println("livre : ");
-        for (Livre liv : ls.findAll()) {
-            System.out.println("   " + liv.getTitre());
+        livre.setTitre("Les Misérables");
+        ls.update(livre);
+        System.out.println("Titre mis à jour: " + ls.findById(1).getTitre());
+
+        List<Livre> livres = ls.findAll();
+        for (Livre l : livres) {
+            System.out.println("- Titre: " + l.getTitre() + "\n" + "- Auteur: " + l.getAuteur() + "\n" + "- Catégorie: " + l.getCategorie());
         }
-        EStatut EMPRUNT = EStatut.EMPRUNT;
-        Etudiant etudiant = es.findById(1);
-        Livre livre2 = ls.findById(1);
 
-        ems.create(new EmpruntLivre(EStatut.EMPRUNT, sdf.parse("15-03-2025"), null, ls.findById(1), es.findById(1)));
+        Date dateEmprunt = new Date();
+        Date dateRetour = new Date(dateEmprunt.getTime() + (7L * 24 * 60 * 60 * 1000)); // Il faut rendre le livre dans 7 jours
 
-        System.out.println("Emprunt enregistré pour le livre : " + ls.findById(1).getTitre());
-        
+        emps.create(new EmpruntLivre(EStatut.EN_COURS, dateEmprunt, dateRetour, ls.findById(1), es.findById(1)));
+        emps.create(new EmpruntLivre(EStatut.EN_COURS, dateEmprunt, dateRetour, ls.findById(2), es.findById(2)));
+        /*
+         List<EmpruntLivre> emprunts = emps.findAll();
+         for (EmpruntLivre em : emprunts) {
+         System.out.println("- Emprunts: " + em.getEtudiant().getNom() + "\n" + em.getEtudiant().getPrenom() + "\n" + em.getLivre().getTitre() + "\n" + em.getDateEmprunt() + " " + em.getDateRetour());
+         }
+         EmpruntLivre empruntSuppr = emps.findAll().get(0);
+         emps.delete(empruntSuppr);
+         System.out.println("Emprunt supprimé: \n" + " -" + empruntSuppr.getEtudiant().getNom() + "\n -" + empruntSuppr.getLivre().getTitre());
+
+         System.out.println("Liste des emprunts mise à jour: ");
+         for (EmpruntLivre emp : emps.findAll()) {
+         System.out.println("Emprunt: " + emp.getEtudiant().getNom() + " -> " + emp.getLivre().getTitre());
+         }
+
+         Etudiant etudiant = es.findById(1);
+         if (etudiant != null) {
+         System.out.println("Étudiant existant: " + etudiant.getNom());
+         etudiant.setNom("Bendriouich");
+         es.update(etudiant);
+         System.out.println("Nom mis à jour avec succès! -> " + es.findById(1).getNom());
+         }
+         */
+        List<Etudiant> etudiants = es.findAll();
+        for (Etudiant e : etudiants) {
+            System.out.println("- Nom: " + e.getNom() + "\n" + "- Prénom: " + e.getPrenom() + "\n" + "- Email: " + e.getEmail() + "\n");
+        }
+
+
+        livres = ls.rechercherLivreParTitre("Les Misérables");
+        if (!livres.isEmpty()) {
+            Livre rech = livres.get(0);
+            System.out.println(rech.getTitre());
+        } else {
+            System.out.println("Aucun livre trouvé pour ce Titre.");
+        }
+
+        List<EmpruntLivre> empruntsFiltrés = emps.findEmpruntsByCategorie(ECategorie.roman);
+        if (empruntsFiltrés.isEmpty()) {
+            System.out.println("Aucun emprunt trouvé pour cette catégorie");
+        } else {
+            System.out.println("Liste des emprunts pour la catégorie 'roman':");
+            for (EmpruntLivre em : empruntsFiltrés) {
+                Etudiant etudiant = em.getEtudiant();
+                Livre lv = em.getLivre();          
+                
+                // Afficher les informations
+                System.out.println("- Étudiant: " + etudiant.getNom() + " " + etudiant.getPrenom());
+                System.out.println("  Livre: " + livre.getTitre() + " de " + lv.getAuteur());
+                System.out.println("  Catégorie: " + lv.getCategorie());
+                System.out.println("  Date d'emprunt: " + em.getDateEmprunt());
+                System.out.println("  Date de retour: " + em.getDateRetour());
+                System.out.println(); // Ligne vide pour séparer les emprunts
+            }
+
+        }
     }
 }

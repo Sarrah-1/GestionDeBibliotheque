@@ -99,4 +99,8 @@ public class EtudiantService implements IDao<Etudiant> {
         return etudiants;
     }
 
+    public Etudiant findByEmail(String souadaygmailcom) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

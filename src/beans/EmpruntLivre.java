@@ -26,9 +26,9 @@ public class EmpruntLivre {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public EmpruntLivre(EStatut eStatut, Date parse, Object object, Livre findById, Etudiant findById0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  /*  public EmpruntLivre(EStatut eStatut, Date parse, Object object, Livre findById, Etudiant findById0) {
+      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }*/
     
 
     public EStatut getStatut() {

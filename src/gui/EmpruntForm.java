@@ -128,7 +128,6 @@ public class EmpruntForm extends javax.swing.JInternalFrame {
         ListeStatu = new javax.swing.JComboBox();
         date_Emprunt = new com.toedter.calendar.JDateChooser();
         date_Retour = new com.toedter.calendar.JDateChooser();
-        bnDelete = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         empruntListe = new javax.swing.JTable();
@@ -171,13 +170,6 @@ public class EmpruntForm extends javax.swing.JInternalFrame {
             }
         });
 
-        bnDelete.setText("Supprimer");
-        bnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bnDeleteActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -203,11 +195,9 @@ public class EmpruntForm extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(date_Emprunt, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                             .addComponent(date_Retour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(79, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bnDelete)
-                        .addGap(35, 35, 35)
                         .addComponent(bnAdd)
                         .addGap(42, 42, 42))))
         );
@@ -221,9 +211,7 @@ public class EmpruntForm extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(date_Retour, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bnAdd)
-                            .addComponent(bnDelete)))
+                        .addComponent(bnAdd))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -317,40 +305,12 @@ public class EmpruntForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ListeEtudiantActionPerformed
 
-    private void bnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnDeleteActionPerformed
-        int selectedRow = empruntListe.getSelectedRow();
-
-    if (selectedRow != -1) {
-        // Obtenir l'objet emprunt à partir de la table
-        String titreLivre = (String) empruntListe.getValueAt(selectedRow, 0);
-        String nomEtudiant = (String) empruntListe.getValueAt(selectedRow, 1);
-
-        // Confirmer la suppression
-        int reponse = JOptionPane.showConfirmDialog(this, "Voulez-vous vraiment supprimer cet emprunt de " 
-                + titreLivre + " par " + nomEtudiant + " ?", "Confirmer la suppression", JOptionPane.YES_NO_OPTION);
-
-        if (reponse == JOptionPane.YES_OPTION) {
-            // Trouver l'emprunt correspondant dans la base de données et le supprimer
-            EmpruntLivre empruntToDelete = emps.findByLivreAndEtudiant(titreLivre, nomEtudiant);
-            if (emps.delete(empruntToDelete)) {
-                JOptionPane.showMessageDialog(this, "Emprunt supprimé avec succès.");
-                load(); // Rafraîchir la table
-            } else {
-                JOptionPane.showMessageDialog(this, "Erreur lors de la suppression de l'emprunt.", "Erreur", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    } else {
-        JOptionPane.showMessageDialog(this, "Veuillez sélectionner un emprunt à supprimer.", "Avertissement", JOptionPane.WARNING_MESSAGE);
-    }
-    }//GEN-LAST:event_bnDeleteActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox ListeEtudiant;
     private javax.swing.JComboBox ListeLivre;
     private javax.swing.JComboBox ListeStatu;
     private javax.swing.JButton bnAdd;
-    private javax.swing.JButton bnDelete;
     private com.toedter.calendar.JDateChooser date_Emprunt;
     private com.toedter.calendar.JDateChooser date_Retour;
     private javax.swing.JTable empruntListe;

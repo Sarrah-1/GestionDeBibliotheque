@@ -45,14 +45,12 @@ public class EmpruntForm extends javax.swing.JInternalFrame {
         emps = new EmpruntService();
         est = EStatut.EN_COURS;
         statutEmprunt = new JComboBox<>();
-
+        model = (DefaultTableModel) empruntListe.getModel();
         loadLivre();
         loadEtudiant();
         loadStatu();
-        //load();
-        model = (DefaultTableModel) empruntListe.getModel();
-        load();
 
+        load();
     }
 
     void loadLivre() {
@@ -69,13 +67,18 @@ public class EmpruntForm extends javax.swing.JInternalFrame {
 
     void loadStatu() {
         if (statutEmprunt == null) {
-            System.out.println("statutEmprunt est null !");
-        } else {
-            statutEmprunt.removeAllItems();
-            for (EStatut s : EStatut.values()) {
-                ListeStatu.addItem(s.name());
-            }
+         System.out.println("statut Emprunt est null !");
+         } else {
+         statutEmprunt.removeAllItems();
+         for (EStatut s : EStatut.values()) {
+         ListeStatu.addItem(s.name());
+         }
+         }
+        ListeStatu.removeAllItems();
+        for (EStatut s : EStatut.values()) {
+            ListeStatu.addItem(s.name());
         }
+
     }
 
     void load() {
@@ -85,7 +88,7 @@ public class EmpruntForm extends javax.swing.JInternalFrame {
                 System.out.println("Avertissement : Un emprunt est null.");
                 continue;
             }
-            
+
             String titreLivre = (e.getLivre() != null) ? e.getLivre().getTitre() : "Livre inconnu";
             String nomEtudiant = (e.getEtudiant() != null) ? e.getEtudiant().getNom() : "Étudiant inconnu";
 
@@ -125,6 +128,7 @@ public class EmpruntForm extends javax.swing.JInternalFrame {
         ListeStatu = new javax.swing.JComboBox();
         date_Emprunt = new com.toedter.calendar.JDateChooser();
         date_Retour = new com.toedter.calendar.JDateChooser();
+        bnDelete = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         empruntListe = new javax.swing.JTable();
@@ -167,6 +171,13 @@ public class EmpruntForm extends javax.swing.JInternalFrame {
             }
         });
 
+        bnDelete.setText("Supprimer");
+        bnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bnDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -194,7 +205,9 @@ public class EmpruntForm extends javax.swing.JInternalFrame {
                             .addComponent(date_Retour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(214, 214, 214)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bnDelete)
+                        .addGap(35, 35, 35)
                         .addComponent(bnAdd)
                         .addGap(42, 42, 42))))
         );
@@ -208,7 +221,9 @@ public class EmpruntForm extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(date_Retour, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(bnAdd))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bnAdd)
+                            .addComponent(bnDelete)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -243,7 +258,7 @@ public class EmpruntForm extends javax.swing.JInternalFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,6 +292,7 @@ public class EmpruntForm extends javax.swing.JInternalFrame {
 
         String selectedStatut = (String) ListeStatu.getSelectedItem();
 
+
         Date dateEmprunt = date_Emprunt.getDate();
         Date dateRetour = date_Retour.getDate();
 
@@ -289,7 +305,7 @@ public class EmpruntForm extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Erreur lors de l'enregistrement de l'emprunt.", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
-        //load();
+        load();
 
     }//GEN-LAST:event_bnAddActionPerformed
 
@@ -301,12 +317,40 @@ public class EmpruntForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ListeEtudiantActionPerformed
 
+    private void bnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnDeleteActionPerformed
+        int selectedRow = empruntListe.getSelectedRow();
+
+    if (selectedRow != -1) {
+        // Obtenir l'objet emprunt à partir de la table
+        String titreLivre = (String) empruntListe.getValueAt(selectedRow, 0);
+        String nomEtudiant = (String) empruntListe.getValueAt(selectedRow, 1);
+
+        // Confirmer la suppression
+        int reponse = JOptionPane.showConfirmDialog(this, "Voulez-vous vraiment supprimer cet emprunt de " 
+                + titreLivre + " par " + nomEtudiant + " ?", "Confirmer la suppression", JOptionPane.YES_NO_OPTION);
+
+        if (reponse == JOptionPane.YES_OPTION) {
+            // Trouver l'emprunt correspondant dans la base de données et le supprimer
+            EmpruntLivre empruntToDelete = emps.findByLivreAndEtudiant(titreLivre, nomEtudiant);
+            if (emps.delete(empruntToDelete)) {
+                JOptionPane.showMessageDialog(this, "Emprunt supprimé avec succès.");
+                load(); // Rafraîchir la table
+            } else {
+                JOptionPane.showMessageDialog(this, "Erreur lors de la suppression de l'emprunt.", "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Veuillez sélectionner un emprunt à supprimer.", "Avertissement", JOptionPane.WARNING_MESSAGE);
+    }
+    }//GEN-LAST:event_bnDeleteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox ListeEtudiant;
     private javax.swing.JComboBox ListeLivre;
     private javax.swing.JComboBox ListeStatu;
     private javax.swing.JButton bnAdd;
+    private javax.swing.JButton bnDelete;
     private com.toedter.calendar.JDateChooser date_Emprunt;
     private com.toedter.calendar.JDateChooser date_Retour;
     private javax.swing.JTable empruntListe;
@@ -321,6 +365,6 @@ public class EmpruntForm extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     /*private void load() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
+     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     }*/
 }

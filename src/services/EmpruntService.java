@@ -24,6 +24,19 @@ public class EmpruntService implements IDao<EmpruntLivre> {
 
     }
 
+    public EmpruntLivre findByLivreAndEtudiant(String titreLivre, String nomEtudiant) {
+        // Recherche de l'emprunt en fonction du livre et de l'étudiant
+        for (EmpruntLivre emprunt : findAll()) {  // findAll() récupère tous les emprunts
+            if (emprunt.getLivre() != null && emprunt.getEtudiant() != null) {
+                if (emprunt.getLivre().getTitre().equals(titreLivre)
+                        && emprunt.getEtudiant().getNom().equals(nomEtudiant)) {
+                    return emprunt; // Retourne l'emprunt trouvé
+                }
+            }
+        }
+        return null; // Aucun emprunt trouvé
+    }
+
     @Override
     public boolean create(EmpruntLivre o) {
         String req = "insert into empruntlivre (statut, dateEmprunt, dateRetour, etudiant_id, livre_id) values (?, ?, ?, ?, ?)";

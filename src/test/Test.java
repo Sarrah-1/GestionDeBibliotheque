@@ -28,7 +28,7 @@ public class Test {
         EmpruntService emps = new EmpruntService();
 
         if (ls.findById(1) == null) {
-            ls.create(new Livre("Les Misérables", "Victor Hugo", ECategorie.ROMAN, true));
+            ls.create(new Livre("Les Misérables", "Victor Hugo", ECategorie.conte, true));
         }
 
         es.create(new Etudiant("ouaday ", "sara", "s.ouaday@gmail.com"));
@@ -37,8 +37,8 @@ public class Test {
         //LivreService ls = new LivreService();
         
         
-        ls.create(new Livre(0, "Le Petit Prince", "Antoine de Saint-Exupéry", ECategorie.CONTE, true));
-        ls.create(new Livre(0, "1984", "George Orwell", ECategorie.NOUVELLE, true));
+        ls.create(new Livre(0, "Le Petit Prince", "Antoine de Saint-Exupéry", ECategorie.conte, true));
+        ls.create(new Livre(0, "1984", "George Orwell", ECategorie.nouvelle, true));
 
         Livre livre = ls.findById(1);
 
@@ -79,7 +79,7 @@ public class Test {
          Etudiant etudiant = es.findById(1);
          if (etudiant != null) {
          System.out.println("Étudiant existant: " + etudiant.getNom());
-         etudiant.setNom("Bendriouich");
+         etudiant.setNom("Ouaday");
          es.update(etudiant);
          System.out.println("Nom mis à jour avec succès! -> " + es.findById(1).getNom());
          }
@@ -98,7 +98,7 @@ public class Test {
             System.out.println("Aucun livre trouvé pour ce Titre.");
         }
 
-        List<EmpruntLivre> empruntsFiltrés = emps.findEmpruntsByCategorie(ECategorie.ROMAN);
+        List<EmpruntLivre> empruntsFiltrés = emps.findEmpruntsByCategorie(ECategorie.roman);
         if (empruntsFiltrés.isEmpty()) {
             System.out.println("Aucun emprunt trouvé pour cette catégorie");
         } else {

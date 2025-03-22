@@ -22,8 +22,6 @@ public final class LivreForm extends javax.swing.JInternalFrame {
     private LivreService ls;
     private DefaultTableModel model;
     private LivreService lvs;
-    
-    
 
     /**
      * Creates new form LivreForm
@@ -34,6 +32,7 @@ public final class LivreForm extends javax.swing.JInternalFrame {
         ls = new LivreService();
         model = (DefaultTableModel) livreList.getModel();
         loadLivre();
+        loadEcategorie();
     }
 
     void loadLivre() {
@@ -44,6 +43,12 @@ public final class LivreForm extends javax.swing.JInternalFrame {
             });
         }
     }
+    private void loadEcategorie() {
+        for (ECategorie ec : ECategorie.values()) {
+            ListeCategorie.addItem(ec);
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -243,7 +248,7 @@ public final class LivreForm extends javax.swing.JInternalFrame {
         }
         try {
             //ECategorie categorie = ECategorie.valueOf(categorieText);
-            if (ls.create(new Livre(titre, auteur, categorieText, disponibleText))) { 
+            if (ls.create(new Livre(titre, auteur, categorieText, disponibleText))) {
                 JOptionPane.showMessageDialog(this, "Livre enregistré avec succès!", "Information", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "Erreur lors de l'enregistrement du livre.", "Erreur", JOptionPane.ERROR_MESSAGE);

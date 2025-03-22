@@ -18,7 +18,7 @@ public class LivreService implements IDao<Livre> {
 
     public List<Livre> rechercherLivreParCategorie(ECategorie categorie) {
         List<Livre> livres = new ArrayList<>();
-        
+
         if (categorie == null) {
             System.out.println("Catégorie invalide.");
             return livres;
@@ -123,8 +123,14 @@ public class LivreService implements IDao<Livre> {
             PreparedStatement ps = connexion.getCn().prepareStatement(req);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                livres.add(new Livre(rs.getInt("id"), rs.getString("titre"), rs.getString("auteur"),
-                        ECategorie.valueOf(rs.getString("categorie").toLowerCase()), rs.getBoolean("disponible")));
+                String categorieStr = rs.getString("categorie");
+                try {
+                    ECategorie ecategorie = ECategorie.valueOf(categorieStr.toUpperCase()); // Utilisation de toUpperCase()
+                    livres.add(new Livre(rs.getInt("id"), rs.getString("titre"), rs.getString("auteur"),
+                            ecategorie, rs.getBoolean("disponible")));
+                } catch (IllegalArgumentException ex) {
+                    System.out.println("Catégorie invalide dans la base de données : " + categorieStr);
+                }
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

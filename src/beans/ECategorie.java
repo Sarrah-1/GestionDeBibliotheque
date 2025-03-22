@@ -7,6 +7,7 @@ package beans;
 
 public enum ECategorie {
 
-    ROMAN, NOUVELLE, AUTOBIOGRAPHIE, POLICIER, CONTE 
+    //ROMAN, NOUVELLE, AUTOBIOGRAPHIE, POLICIER, CONTE 
+    roman, nouvelle, autobiographie, policier, conte, NOUVELLE, CONTE, ROMAN
 
 }

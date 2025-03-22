@@ -30,7 +30,7 @@ CREATE TABLE Livre (
     categorie VARCHAR(100) NOT NULL,
     disponible BOOLEAN NOT NULL DEFAULT TRUE
 );
-
+```sql
 CREATE TABLE Etudiant (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(50) NOT NULL,
@@ -47,3 +47,4 @@ CREATE TABLE EmpruntLivre (
     FOREIGN KEY (livre_id) REFERENCES Livre(id) ON DELETE CASCADE,
     FOREIGN KEY (etudiant_id) REFERENCES Etudiant(id) ON DELETE CASCADE
 );
+```

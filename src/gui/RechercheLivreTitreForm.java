@@ -75,13 +75,14 @@ public class RechercheLivreTitreForm extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableRecherche = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(255, 249, 244));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Recherche Livre par Titre"));
+        jPanel1.setBackground(new java.awt.Color(255, 249, 244));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Recherche Livre par Titre", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel1.setToolTipText("");
 
         txtTitre.setText("Titre :");
@@ -125,6 +126,7 @@ public class RechercheLivreTitreForm extends javax.swing.JInternalFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
+        tableRecherche.setBackground(new java.awt.Color(255, 249, 244));
         tableRecherche.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

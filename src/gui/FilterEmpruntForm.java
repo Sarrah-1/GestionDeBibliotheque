@@ -76,13 +76,14 @@ public class FilterEmpruntForm extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ListeEmpunt = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(255, 249, 244));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Flitrer les emprunts par Catégorie"));
+        jPanel1.setBackground(new java.awt.Color(255, 249, 244));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Flitrer les emprunts par Catégorie", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         jLabel1.setText("Catégorie :");
 
@@ -123,9 +124,10 @@ public class FilterEmpruntForm extends javax.swing.JInternalFrame {
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Liste des empunts"));
+        jPanel2.setBackground(new java.awt.Color(255, 249, 243));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Liste des empunts", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
+        ListeEmpunt.setBackground(new java.awt.Color(255, 249, 244));
         ListeEmpunt.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

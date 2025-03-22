@@ -74,13 +74,14 @@ public final class LivreForm extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         livreList = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(255, 249, 244));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Informations Livres"));
+        jPanel1.setBackground(new java.awt.Color(255, 249, 244));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informations Livres", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         jLabel1.setText("Titre :");
 
@@ -167,10 +168,11 @@ public final class LivreForm extends javax.swing.JInternalFrame {
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 249, 244));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Liste des livres"));
         jPanel2.setToolTipText("");
 
+        livreList.setBackground(new java.awt.Color(255, 249, 244));
         livreList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

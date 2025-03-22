@@ -37,6 +37,7 @@ public class MDIApplication extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         etudiantMenuItem = new javax.swing.JMenuItem();
@@ -47,6 +48,15 @@ public class MDIApplication extends javax.swing.JFrame {
         cutMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        desktopPane.setBackground(new java.awt.Color(255, 249, 244));
+        desktopPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setBackground(new java.awt.Color(255, 102, 204));
+        desktopPane.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 450));
+
+        menuBar.setBackground(new java.awt.Color(255, 51, 102));
+        menuBar.setForeground(new java.awt.Color(255, 0, 51));
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("Gestion");
@@ -192,6 +202,7 @@ public class MDIApplication extends javax.swing.JFrame {
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem etudiantMenuItem;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem pasteMenuItem;
     private javax.swing.JMenuItem saveMenuLivre;

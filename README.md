@@ -1,6 +1,6 @@
 ## 📌Gestion des Bibliothèques Scolaires
 
-📌 Contexte
+Contexte
 La gestion des bibliothèques scolaires est essentielle pour assurer un accès efficace aux ressources éducatives. Une application bien conçue permet de gérer les livres, les étudiants et les emprunts de manière organisée, facilitant ainsi le suivi des ressources disponibles et des demandes des étudiants.
 
 ## 📌L'Objectif

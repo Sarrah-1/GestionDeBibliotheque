@@ -66,6 +66,20 @@ CREATE TABLE user (
     email VARCHAR(50) NOT NULL UNIQUE
 );
 ```
+## Technologies Utilisées:
+-NetBeans (Java) : Pour le développement de l’application.
+
+-MySQL: Pour la gestion de la base de données.
+
+-SWING : Pour l'interface graphique et rendre l’application facile à utiliser.
+
+-Bibliothèque graphique : JFreeChart
+
+-Outils de développement :
+- IDE Java : NetBeans - Conception : MagicDraw -
+- Outil de gestion de base de données : phpMyAdmin
+- Accès aux données : JDBC
+  
 ## Vidéo Démonstrative
 
 https://github.com/user-attachments/assets/ab0ebde3-cfae-4f1d-928f-b6767a374748

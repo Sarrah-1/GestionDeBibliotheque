@@ -58,7 +58,7 @@ CREATE TABLE etudiant (
     email VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE emprunt (
+CREATE TABLE empruntlivre (
     idEtudiant INT NOT NULL,
     idLivre INT NOT NULL,
     dateEmprunt DATE NOT NULL,

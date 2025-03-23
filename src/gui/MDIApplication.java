@@ -5,6 +5,7 @@
  */
 package gui;
 
+import javax.swing.JInternalFrame;
 import services.EtudiantService;
 
 /**
@@ -45,6 +46,8 @@ public class MDIApplication extends javax.swing.JFrame {
         editMenu = new javax.swing.JMenu();
         cutMenuItem = new javax.swing.JMenuItem();
         cutMenuItem1 = new javax.swing.JMenuItem();
+        startMenu = new javax.swing.JMenu();
+        TauxEmprunt = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,7 +100,7 @@ public class MDIApplication extends javax.swing.JFrame {
         menuBar.add(fileMenu);
 
         editMenu.setMnemonic('e');
-        editMenu.setText("Statistiques");
+        editMenu.setText("Recherche");
 
         cutMenuItem.setMnemonic('t');
         cutMenuItem.setText("Filtrer les Emprunts par Catégorie");
@@ -118,6 +121,20 @@ public class MDIApplication extends javax.swing.JFrame {
         editMenu.add(cutMenuItem1);
 
         menuBar.add(editMenu);
+
+        startMenu.setMnemonic('e');
+        startMenu.setText("Statistiques");
+
+        TauxEmprunt.setMnemonic('t');
+        TauxEmprunt.setText("Taux d’emprunt par catégorie ");
+        TauxEmprunt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TauxEmpruntActionPerformed(evt);
+            }
+        });
+        startMenu.add(TauxEmprunt);
+
+        menuBar.add(startMenu);
 
         setJMenuBar(menuBar);
 
@@ -166,6 +183,13 @@ public class MDIApplication extends javax.swing.JFrame {
         r.setVisible(true);
     }//GEN-LAST:event_cutMenuItem1ActionPerformed
 
+    private void TauxEmpruntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TauxEmpruntActionPerformed
+        closeAllInternalFrames();
+        GraphiqueEmprunts g = new GraphiqueEmprunts();
+        desktopPane.add(g);
+        g.setVisible(true);
+    }//GEN-LAST:event_TauxEmpruntActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -202,6 +226,7 @@ public class MDIApplication extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem TauxEmprunt;
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JMenuItem cutMenuItem1;
     private javax.swing.JDesktopPane desktopPane;
@@ -211,6 +236,13 @@ public class MDIApplication extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem pasteMenuItem;
     private javax.swing.JMenuItem saveMenuLivre;
+    private javax.swing.JMenu startMenu;
     // End of variables declaration//GEN-END:variables
+
+     private void closeAllInternalFrames() {
+        for (JInternalFrame frame : desktopPane.getAllFrames()) {
+            frame.dispose();
+        }
+    }
 
 }

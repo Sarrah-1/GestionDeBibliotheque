@@ -50,7 +50,7 @@
         <Menu class="javax.swing.JMenu" name="editMenu">
           <Properties>
             <Property name="mnemonic" type="int" value="101"/>
-            <Property name="text" type="java.lang.String" value="Statistiques"/>
+            <Property name="text" type="java.lang.String" value="Recherche"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="cutMenuItem">
@@ -69,6 +69,23 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cutMenuItem1ActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="startMenu">
+          <Properties>
+            <Property name="mnemonic" type="int" value="101"/>
+            <Property name="text" type="java.lang.String" value="Statistiques"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="TauxEmprunt">
+              <Properties>
+                <Property name="mnemonic" type="int" value="116"/>
+                <Property name="text" type="java.lang.String" value="Taux d&#x2019;emprunt par cat&#xe9;gorie "/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TauxEmpruntActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

@@ -36,7 +36,7 @@ public class Main extends javax.swing.JFrame {
         txtLogin = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         bnConnexion = new javax.swing.JButton();
-        pwdforget = new javax.swing.JTextField();
+        pwdforgotten = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,15 +82,15 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel1.add(bnConnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 130, 40));
 
-        pwdforget.setBackground(new java.awt.Color(255, 249, 244));
-        pwdforget.setText("Mot de passe oublié ?");
-        pwdforget.setBorder(null);
-        pwdforget.addActionListener(new java.awt.event.ActionListener() {
+        pwdforgotten.setBackground(new java.awt.Color(255, 249, 244));
+        pwdforgotten.setText("Mot de passe oublié ?");
+        pwdforgotten.setBorder(null);
+        pwdforgotten.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pwdforgetActionPerformed(evt);
+                pwdforgottenActionPerformed(evt);
             }
         });
-        jPanel1.add(pwdforget, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, 160, 20));
+        jPanel1.add(pwdforgotten, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, 160, 20));
 
         jLabel5.setBackground(new java.awt.Color(241, 110, 78));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/test (1).png"))); // NOI18N
@@ -136,9 +136,9 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bnConnexionMouseWheelMoved
 
-    private void pwdforgetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdforgetActionPerformed
+    private void pwdforgottenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdforgottenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_pwdforgetActionPerformed
+    }//GEN-LAST:event_pwdforgottenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,7 +179,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton bnConnexion;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField pwdforget;
+    private javax.swing.JTextField pwdforgotten;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables

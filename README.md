@@ -33,8 +33,7 @@ L'objectif de ce projet est de développer une application qui facilite la gesti
 ## 📌 Diagrammes UML
 🎯 Diagramme de Classe
 
-![WhatsApp Image 2025-03-23 à 18 09 23_2340e8bb](https://github.com/user-attachments/assets/bcd301a4-8d2a-4ae0-8bfb-5586bbe79f82)
-
+![WhatsApp Image 2025-03-23 à 19 30 12_ab7293d0](https://github.com/user-attachments/assets/16c71b22-5525-4e13-9600-b72a4ec18461)
 
 📌 Diagramme de cas d'utilisation
 

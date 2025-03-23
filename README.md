@@ -1,4 +1,5 @@
-**📌 Gestion des Bibliothèques Scolaires
+## Gestion des Bibliothèques Scolaires
+📌 Gestion des Bibliothèques Scolaires
 
 **📌 Contexte
 La gestion des bibliothèques scolaires est essentielle pour assurer un accès efficace aux ressources éducatives. Une application bien conçue permet de gérer les livres, les étudiants et les emprunts de manière organisée, facilitant ainsi le suivi des ressources disponibles et des demandes des étudiants.
@@ -9,8 +10,9 @@ L'objectif de ce projet est de développer une application qui facilite la gesti
 - ✅ La gestion des emprunts par les étudiants.
 - ✅ Un filtrage et une recherche optimisés pour les livres.
 - ✅ Une visualisation graphique des emprunts par catégorie.
-
-**📌 Fonctionnalités
+- 
+## Fonctionnalités
+📌 Fonctionnalités
 📍 Ajouter/Supprimer un livre : Gestion facile du catalogue de livres.
 📍 Enregistrer un emprunt : Suivre qui emprunte quel livre et quand.
 📍 Filtrer les emprunts par catégorie : Analyser les emprunts par type de livre.
@@ -20,7 +22,8 @@ L'objectif de ce projet est de développer une application qui facilite la gesti
 **📌 Visualisation des Données
 📊 Afficher un graphique en Pie Chart pour analyser le taux d’emprunt par catégorie, permettant d'identifier les livres les plus et les moins empruntés.
 
-**📌 Diagrammes UML
+## Fonctionnalités
+📌 Diagrammes UML
 🎯 Diagramme de Classe
 
 

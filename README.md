@@ -12,9 +12,13 @@ L'objectif de ce projet est de développer une application qui facilite la gesti
 - 
 ## 📌 Fonctionnalités 
 📍 Ajouter/Supprimer un livre : Gestion facile du catalogue de livres.
+
 📍 Enregistrer un emprunt : Suivre qui emprunte quel livre et quand.
+
 📍 Filtrer les emprunts par catégorie : Analyser les emprunts par type de livre.
+
 📍 Rechercher un livre par titre : Trouver rapidement un livre dans la base de données.
+
 📍 Afficher un graphique du taux d’emprunt par catégorie (Pie chart) : Visualiser les statistiques d'emprunt pour une évaluation rapide.
 
 ## 📌 Visualisation des Données

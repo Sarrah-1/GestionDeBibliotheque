@@ -60,6 +60,11 @@ CREATE TABLE EmpruntLivre (
     FOREIGN KEY (livre_id) REFERENCES Livre(id) ON DELETE CASCADE,
     FOREIGN KEY (etudiant_id) REFERENCES Etudiant(id) ON DELETE CASCADE
 );
+CREATE TABLE user (
+    login VARCHAR(100) NOT NULL PRIMARY KEY,
+    password VARCHAR(100) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE
+);
 ```
 ## Vidéo Démonstrative
 

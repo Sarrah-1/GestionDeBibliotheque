@@ -39,16 +39,16 @@ public final class LivreForm extends javax.swing.JInternalFrame {
         model.setRowCount(0);
         for (Livre l : ls.findAll()) {
             model.addRow(new Object[]{
-                l.getId(), l.getTitre(), l.getAuteur(), l.getCategorie(), l.isDisponible()
+                l.getTitre(), l.getAuteur(), l.getCategorie(), l.isDisponible() ? "Oui" : "Non"
             });
         }
     }
+
     private void loadEcategorie() {
         for (ECategorie ec : ECategorie.values()) {
-            ListeCategorie.addItem(ec);
+            listCategorie.addItem(ec);
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,8 +68,9 @@ public final class LivreForm extends javax.swing.JInternalFrame {
         bnAdd = new javax.swing.JButton();
         txtTitre = new javax.swing.JTextField();
         txtAuteur = new javax.swing.JTextField();
-        txtDisponible = new javax.swing.JTextField();
-        ListeCategorie = new javax.swing.JComboBox();
+        listCategorie = new javax.swing.JComboBox();
+        Oui = new javax.swing.JRadioButton();
+        Non = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         livreList = new javax.swing.JTable();
@@ -113,40 +114,48 @@ public final class LivreForm extends javax.swing.JInternalFrame {
             }
         });
 
-        ListeCategorie.addActionListener(new java.awt.event.ActionListener() {
+        listCategorie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ListeCategorieActionPerformed(evt);
+                listCategorieActionPerformed(evt);
             }
         });
+
+        Oui.setText("Oui");
+
+        Non.setText("Non");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(30, 30, 30)
-                        .addComponent(txtTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtAuteur, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(39, 39, 39))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(28, 28, 28)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAuteur, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ListeCategorie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDisponible, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
-                .addGap(28, 28, 28)
+                .addGap(53, 53, 53)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(32, 32, 32))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Oui)
+                        .addGap(18, 18, 18)
+                        .addComponent(Non))
+                    .addComponent(listCategorie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bnDelete))
+                .addGap(36, 36, 36))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,22 +163,23 @@ public final class LivreForm extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel3)
                     .addComponent(bnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTitre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ListeCategorie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(listCategorie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4)
                     .addComponent(txtAuteur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Oui)
+                    .addComponent(Non)
                     .addComponent(bnDelete))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 249, 244));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Liste des livres"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Liste des livres", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel2.setToolTipText("");
 
         livreList.setBackground(new java.awt.Color(255, 249, 244));
@@ -192,8 +202,9 @@ public final class LivreForm extends javax.swing.JInternalFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -216,11 +227,13 @@ public final class LivreForm extends javax.swing.JInternalFrame {
 
     private void bnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnDeleteActionPerformed
         int response = JOptionPane.showConfirmDialog(this, "Voulez-vous vraiment supprimer ce livre?", "Information", JOptionPane.INFORMATION_MESSAGE);
-        if (response == 0) {
+        if (response == 0) {          
             int selectedRow = livreList.getSelectedRow();
             if (selectedRow != -1) {
-                int id = (int) livreList.getValueAt(selectedRow, 0);
-                ls.delete(ls.findById(id));
+                //int id = (int) livreList.getValueAt(selectedRow, 0);
+                Livre livre = ls.findAll().get(selectedRow);
+                //ls.delete(ls.findById(id));
+                ls.delete(livre);
                 loadLivre();
             } else {
                 JOptionPane.showMessageDialog(this, "Aucun livre sélectionné.", "Avertissement", JOptionPane.WARNING_MESSAGE);
@@ -235,46 +248,43 @@ public final class LivreForm extends javax.swing.JInternalFrame {
     private void bnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnAddActionPerformed
         String titre = txtTitre.getText();
         String auteur = txtAuteur.getText();
-        ECategorie categorieText = (ECategorie) ListeCategorie.getSelectedItem();
-        String disponibleText = txtDisponible.getText().trim();
-        if (titre.isEmpty() || auteur.isEmpty() || categorieText == null || disponibleText.isEmpty()) {
+        //String selectedCategory = (String) listCategorie.getSelectedItem();
+        ECategorie categorieText = (ECategorie) listCategorie.getSelectedItem();
+        //String disponibleText = txtDisponible.getText().trim();
+        if (titre.isEmpty() || auteur.isEmpty() || categorieText == null) {
             JOptionPane.showMessageDialog(this, "Le titre et l'auteur,et la catégorie sont obligatoires");
             return;
         }
-        boolean disponible = false;
-        if (disponibleText.equalsIgnoreCase("true") || disponibleText.equalsIgnoreCase("yes")) {
-            disponible = true;
-        } else if (!disponibleText.equalsIgnoreCase("false") && !disponibleText.equalsIgnoreCase("no")) {
-            JOptionPane.showMessageDialog(this, "La valeur de disponibilité est invalide.", "Erreur", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        boolean disponible = Oui.isSelected();
+
         try {
-            //ECategorie categorie = ECategorie.valueOf(categorieText);
-            if (ls.create(new Livre(titre, auteur, categorieText, disponibleText))) {
+            if (ls.create(new Livre(titre, auteur, categorieText, disponible))) {
                 JOptionPane.showMessageDialog(this, "Livre enregistré avec succès!", "Information", JOptionPane.INFORMATION_MESSAGE);
+                loadLivre();
             } else {
                 JOptionPane.showMessageDialog(this, "Erreur lors de l'enregistrement du livre.", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(this, "La catégorie spécifiée est invalide.", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
-        loadLivre();
+        //loadLivre();
     }//GEN-LAST:event_bnAddActionPerformed
 
-    private void ListeCategorieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListeCategorieActionPerformed
-        model.setRowCount(0);
-        for (Livre liv : lvs.rechercherLivreParCategorie((ECategorie) ListeCategorie.getSelectedItem())) {
-            model.addRow(new Object[]{
-                liv.getTitre(),
-                liv.getAuteur(),
-                liv.getCategorie()
-            });
-        }
-    }//GEN-LAST:event_ListeCategorieActionPerformed
+    private void listCategorieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listCategorieActionPerformed
+        /*model.setRowCount(0);
+         for (Livre liv : lvs.rechercherLivreParCategorie((ECategorie) ListeCategorie.getSelectedItem())) {
+         model.addRow(new Object[]{
+         liv.getTitre(),
+         liv.getAuteur(),
+         liv.getCategorie()
+         });
+         }*/
+    }//GEN-LAST:event_listCategorieActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox ListeCategorie;
+    private javax.swing.JRadioButton Non;
+    private javax.swing.JRadioButton Oui;
     private javax.swing.JButton bnAdd;
     private javax.swing.JButton bnDelete;
     private javax.swing.JLabel jLabel1;
@@ -284,9 +294,9 @@ public final class LivreForm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox listCategorie;
     private javax.swing.JTable livreList;
     private javax.swing.JTextField txtAuteur;
-    private javax.swing.JTextField txtDisponible;
     private javax.swing.JTextField txtTitre;
     // End of variables declaration//GEN-END:variables
 

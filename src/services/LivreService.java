@@ -76,8 +76,9 @@ public class LivreService implements IDao<Livre> {
             return true;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            return false;
         }
-        return false;
+
     }
 
     @Override
@@ -143,6 +144,13 @@ public class LivreService implements IDao<Livre> {
     }
 
     public List<Livre> rechercherLivreParTitre(String titrerecherche) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Livre> livresTrouves = new ArrayList<>();
+        // Logique pour récupérer les livres depuis la base de données ou une liste
+        for (Livre livre : findAll()) { // Supposons que findAll() retourne tous les livres
+            if (livre.getTitre().toLowerCase().contains(titrerecherche.toLowerCase())) {
+                livresTrouves.add(livre);
+            }
+        }
+        return livresTrouves;
     }
 }

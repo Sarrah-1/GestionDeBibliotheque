@@ -28,7 +28,7 @@ public class Test {
         EmpruntService emps = new EmpruntService();
 
         if (ls.findById(1) == null) {
-            ls.create(new Livre("Les Misérables", "Victor Hugo", ECategorie.conte, true));
+            ls.create(new Livre("Les Misérables", "Victor Hugo", ECategorie.CONTE, true));
         }
 
         es.create(new Etudiant("ouaday ", "sara", "s.ouaday@gmail.com"));
@@ -37,8 +37,8 @@ public class Test {
         //LivreService ls = new LivreService();
         
         
-        ls.create(new Livre(0, "Le Petit Prince", "Antoine de Saint-Exupéry", ECategorie.conte, true));
-        ls.create(new Livre(0, "1984", "George Orwell", ECategorie.nouvelle, true));
+        ls.create(new Livre(0, "Le Petit Prince", "Antoine de Saint-Exupéry", ECategorie.CONTE, true));
+        ls.create(new Livre(0, "1984", "George Orwell", ECategorie.NOUVELLE, true));
 
         Livre livre = ls.findById(1);
 
@@ -98,7 +98,7 @@ public class Test {
             System.out.println("Aucun livre trouvé pour ce Titre.");
         }
 
-        List<EmpruntLivre> empruntsFiltrés = emps.findEmpruntsByCategorie(ECategorie.roman);
+        List<EmpruntLivre> empruntsFiltrés = emps.findEmpruntsByCategorie(ECategorie.ROMAN);
         if (empruntsFiltrés.isEmpty()) {
             System.out.println("Aucun emprunt trouvé pour cette catégorie");
         } else {

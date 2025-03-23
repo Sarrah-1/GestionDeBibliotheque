@@ -183,14 +183,7 @@ public class FilterEmpruntForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnFiltrerParCategorieActionPerformed
 
     private void ListeCategorieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListeCategorieActionPerformed
-        model.setRowCount(0);
-        for (Livre liv : lvs.rechercherLivreParCategorie((ECategorie) ListeCategorie.getSelectedItem())) {
-            model.addRow(new Object[]{
-                liv.getTitre(),
-                liv.getAuteur(),
-                liv.getCategorie()
-            });
-        }
+      //
     }//GEN-LAST:event_ListeCategorieActionPerformed
 
 

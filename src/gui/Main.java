@@ -5,7 +5,17 @@
  */
 package gui;
 
+import java.util.Properties;
 import javax.swing.JOptionPane;
+import services.UserService;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -20,7 +30,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Authentification");
         this.setLocationRelativeTo(null);
-        
+
     }
 
     /**
@@ -36,7 +46,7 @@ public class Main extends javax.swing.JFrame {
         txtLogin = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         bnConnexion = new javax.swing.JButton();
-        pwdforgotten = new javax.swing.JTextField();
+        pwdforgotten = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,15 +92,14 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel1.add(bnConnexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 130, 40));
 
-        pwdforgotten.setBackground(new java.awt.Color(255, 249, 244));
+        pwdforgotten.setBackground(new java.awt.Color(255, 255, 255));
         pwdforgotten.setText("Mot de passe oublié ?");
-        pwdforgotten.setBorder(null);
         pwdforgotten.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pwdforgottenActionPerformed(evt);
             }
         });
-        jPanel1.add(pwdforgotten, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, 160, 20));
+        jPanel1.add(pwdforgotten, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 469, 190, 20));
 
         jLabel5.setBackground(new java.awt.Color(241, 110, 78));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/test (1).png"))); // NOI18N
@@ -120,15 +129,17 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void bnConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnConnexionActionPerformed
-        // TODO add your handling code here:
-        String login = txtLogin.getText().toString();
-        String password = txtPassword.getText().toString();
-        if(login.equals("ens") && password.equals("123")){
-            MDIApplication mdi = new MDIApplication();
+        String login = txtLogin.getText().trim();
+        String password = new String(txtPassword.getPassword()).trim();
+
+        UserService userService = new UserService();
+
+        if (userService.authenticate(login, password)) {
+            MDIApplication mdi = MDIApplication.getInstance();
             mdi.setVisible(true);
             this.setVisible(false);
-        }else {
-            JOptionPane.showMessageDialog(this, "Login ou mot de passe incorrect ");
+        } else {
+            JOptionPane.showMessageDialog(this, "Login ou mot de passe incorrect");
         }
     }//GEN-LAST:event_bnConnexionActionPerformed
 
@@ -137,11 +148,70 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_bnConnexionMouseWheelMoved
 
     private void pwdforgottenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdforgottenActionPerformed
-        // TODO add your handling code here:
+        String login = txtLogin.getText().trim();
+        UserService userService = new UserService();
+
+        String email = JOptionPane.showInputDialog(this, "Entrez votre adresse email");
+
+        if (userService.userExists(login) && email != null && !email.isEmpty()) {
+
+            String reponseSecrete = JOptionPane.showInputDialog(this, "Quelle est le nom de votre prof ?");
+            String bonneReponse = "lachgar";
+
+            if (reponseSecrete != null && reponseSecrete.trim().equalsIgnoreCase(bonneReponse)) {
+
+                String nouveauMotDePasse = JOptionPane.showInputDialog(this, "Entrez votre nouveau mot de passe");
+
+                if (nouveauMotDePasse != null && !nouveauMotDePasse.trim().isEmpty()) {
+                    boolean result = userService.changerMotDePasse(login, nouveauMotDePasse);
+
+                    Properties properties = new Properties();
+                    properties.put("mail.smtp.host", "smtp.gmail.com");
+                    properties.put("mail.smtp.port", "587");
+                    properties.put("mail.smtp.starttls.enable", "true");
+                    properties.put("mail.smtp.auth", "true");
+
+                    Session session = Session.getInstance(properties, new Authenticator() {
+                        @Override
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication("saraouaday1@gmail.com", "yhry cxni pcel oqwi");
+                        }
+                    });
+                    try {
+
+                        Message message = new MimeMessage(session);
+                        message.setFrom(new InternetAddress("saraouaday1@gmail.com"));
+                        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+                        message.setSubject("Récupération de mot de passe");
+                        String messageContent = "Bonjour " + login + " ,\n\nVotre nouveau mot de passe est : " + nouveauMotDePasse;
+                        message.setText(messageContent);
+
+                        Transport.send(message);
+
+                        if (result) {
+                            JOptionPane.showMessageDialog(this, "Mot de passe changé avec succès !");
+                            JOptionPane.showMessageDialog(this, "Votre nouveau mot de passe a été envoyé à votre adresse email.");
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Échec du changement de mot de passe.");
+                        }
+
+                    } catch (MessagingException e) {
+                        e.printStackTrace();
+                        JOptionPane.showMessageDialog(this, "Échec de l'envoi du mot de passe. Vérifiez l'adresse email.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Le mot de passe ne peut pas être vide.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Réponse incorrecte à la question secrète.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "L'adresse email ne peut pas être vide ou l'utilisateur est inconnu.");
+        }
     }//GEN-LAST:event_pwdforgottenActionPerformed
 
     /**
-     * @param args the command line arguments
+     * @param args the command line argumentsR
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -179,7 +249,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton bnConnexion;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField pwdforgotten;
+    private javax.swing.JButton pwdforgotten;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables

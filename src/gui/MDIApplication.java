@@ -14,8 +14,13 @@ import services.EtudiantService;
  */
 public class MDIApplication extends javax.swing.JFrame {
 
-    static MDIApplication getInstance() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static MDIApplication instance;
+
+    public static MDIApplication getInstance() {
+        if (instance == null) {
+            instance = new MDIApplication();
+        }
+        return instance;
     }
 
     /**
@@ -239,7 +244,7 @@ public class MDIApplication extends javax.swing.JFrame {
     private javax.swing.JMenu startMenu;
     // End of variables declaration//GEN-END:variables
 
-     private void closeAllInternalFrames() {
+    private void closeAllInternalFrames() {
         for (JInternalFrame frame : desktopPane.getAllFrames()) {
             frame.dispose();
         }

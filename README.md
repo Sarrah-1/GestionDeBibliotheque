@@ -10,7 +10,7 @@ L'objectif de ce projet est de développer une application qui facilite la gesti
 - ✅ La gestion des emprunts par les étudiants.
 - ✅ Un filtrage et une recherche optimisés pour les livres.
 - ✅ Une visualisation graphique des emprunts par catégorie.
-- 
+  
 ## 📌 Fonctionnalités 
 📍 Ajouter/Supprimer un livre : Gestion facile du catalogue de livres.
 
@@ -30,8 +30,8 @@ L'objectif de ce projet est de développer une application qui facilite la gesti
 ## 📌 Diagrammes UML
 🎯 Diagramme de Classe
 
+<img width="544" alt="Capture d’écran 2025-03-23 153507" src="https://github.com/user-attachments/assets/c8daf355-cc58-4c98-907d-5c167fd4f71e" />
 
-<img width="484" alt="DiagrammeDeclasse" src="https://github.com/user-attachments/assets/9933b904-02b6-41ee-9b0b-483504ac674a" />
 
 
 📌 Diagramme de cas d'utilisation

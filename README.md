@@ -23,6 +23,7 @@ L'objectif de ce projet est de développer une application qui facilite la gesti
 📍 Afficher un graphique du taux d’emprunt par catégorie (Pie chart) : Visualiser les statistiques d'emprunt pour une évaluation rapide.
 
 ## 📌 Visualisation des Données
+
 📊 Afficher un graphique en Pie Chart pour analyser le taux d’emprunt par catégorie, permettant d'identifier les livres les plus et les moins empruntés.
 
 
@@ -38,7 +39,7 @@ L'objectif de ce projet est de développer une application qui facilite la gesti
 <img width="541" alt="Capture d’écran 2025-03-23 142348" src="https://github.com/user-attachments/assets/5523be19-f596-41f1-aaea-7813b8058c72" />
 
 
-##📌 Structure de la Base de Données
+## 📌 Structure de la Base de Données
 
 🗄️ Modélisation des Tables
 ```sql

@@ -34,6 +34,7 @@ L'objectif de ce projet est de développer une application qui facilite la gesti
 
 
 ##📌 Structure de la Base de Données
+
 🗄️ Modélisation des Tables
 ```sql
 CREATE TABLE Etudiant (

@@ -3,7 +3,7 @@
 📌 Contexte
 La gestion des bibliothèques scolaires est essentielle pour assurer un accès efficace aux ressources éducatives. Une application bien conçue permet de gérer les livres, les étudiants et les emprunts de manière organisée, facilitant ainsi le suivi des ressources disponibles et des demandes des étudiants.
 
-##📌 L'Objectif
+## 📌L'Objectif
 L'objectif de ce projet est de développer une application qui facilite la gestion des bibliothèques scolaires en permettant :
 - ✅ L'enregistrement et le suivi des livres.
 - ✅ La gestion des emprunts par les étudiants.

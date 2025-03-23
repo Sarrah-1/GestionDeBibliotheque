@@ -1,35 +1,40 @@
-## Gestion des Bibliothèques Scolaires :
+## 📌 Gestion des Bibliothèques Scolaires
 
-## Contexte
+📌 Contexte
+
 La gestion des bibliothèques scolaires est essentielle pour assurer un accès efficace aux ressources éducatives. Une application bien conçue permet de gérer les livres, les étudiants et les emprunts de manière organisée, facilitant ainsi le suivi des ressources disponibles et des demandes des étudiants.
 
-## Objectif
+## 📌L'Objectif
 L'objectif de ce projet est de développer une application qui facilite la gestion des bibliothèques scolaires en permettant :
-- L'enregistrement et le suivi des livres.
-- La gestion des emprunts par les étudiants.
-- Un filtrage et une recherche optimisés pour les livres.
-- Une visualisation graphique des emprunts par catégorie.
+- ✅ L'enregistrement et le suivi des livres.
+- ✅ La gestion des emprunts par les étudiants.
+- ✅ Un filtrage et une recherche optimisés pour les livres.
+- ✅ Une visualisation graphique des emprunts par catégorie.
+- 
+## 📌 Fonctionnalités 
+📍 Ajouter/Supprimer un livre : Gestion facile du catalogue de livres.
 
-## Fonctionnalités
-- Ajouter/Supprimer un livre
-- Enregistrer un emprunt
-- Filtrer les emprunts par catégorie
-- Rechercher un livre par titre
-- Afficher un graphique du taux d’emprunt par catégorie (Pie chart)
-  
-## Visualisation des Données
-- Afficher un graphique en Pie Chart pour analyser le taux d’emprunt par catégorie.
+📍 Enregistrer un emprunt : Suivre qui emprunte quel livre et quand.
 
-### Structure de la Base de Données
+📍 Filtrer les emprunts par catégorie : Analyser les emprunts par type de livre.
 
-#### Table Livre
-CREATE TABLE Livre (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    titre VARCHAR(50) NOT NULL,
-    auteur VARCHAR(50) NOT NULL,
-    categorie VARCHAR(100) NOT NULL,
-    disponible BOOLEAN NOT NULL DEFAULT TRUE
-);
+📍 Rechercher un livre par titre : Trouver rapidement un livre dans la base de données.
+
+📍 Afficher un graphique du taux d’emprunt par catégorie (Pie chart) : Visualiser les statistiques d'emprunt pour une évaluation rapide.
+
+## 📌 Visualisation des Données
+📊 Afficher un graphique en Pie Chart pour analyser le taux d’emprunt par catégorie, permettant d'identifier les livres les plus et les moins empruntés.
+
+
+## 📌 Diagrammes UML
+🎯 Diagramme de Classe
+
+
+<img width="484" alt="DiagrammeDeclasse" src="https://github.com/user-attachments/assets/9933b904-02b6-41ee-9b0b-483504ac674a" />
+
+
+##📌 Structure de la Base de Données
+🗄️ Modélisation des Tables
 ```sql
 CREATE TABLE Etudiant (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -49,5 +54,9 @@ CREATE TABLE EmpruntLivre (
 );
 ```
 ## Vidéo Démonstrative
+
+https://github.com/user-attachments/assets/ab0ebde3-cfae-4f1d-928f-b6767a374748
+
+
 
 

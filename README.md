@@ -1,36 +1,34 @@
-## Gestion des Bibliothèques Scolaires
-📌 Gestion des Bibliothèques Scolaires
+## 📌Gestion des Bibliothèques Scolaires
 
-**📌 Contexte
+📌 Contexte
 La gestion des bibliothèques scolaires est essentielle pour assurer un accès efficace aux ressources éducatives. Une application bien conçue permet de gérer les livres, les étudiants et les emprunts de manière organisée, facilitant ainsi le suivi des ressources disponibles et des demandes des étudiants.
 
-📌 Objectif
+##📌 L'Objectif
 L'objectif de ce projet est de développer une application qui facilite la gestion des bibliothèques scolaires en permettant :
 - ✅ L'enregistrement et le suivi des livres.
 - ✅ La gestion des emprunts par les étudiants.
 - ✅ Un filtrage et une recherche optimisés pour les livres.
 - ✅ Une visualisation graphique des emprunts par catégorie.
 - 
-## Fonctionnalités
-📌 Fonctionnalités
+## 📌 Fonctionnalités 
 📍 Ajouter/Supprimer un livre : Gestion facile du catalogue de livres.
 📍 Enregistrer un emprunt : Suivre qui emprunte quel livre et quand.
 📍 Filtrer les emprunts par catégorie : Analyser les emprunts par type de livre.
 📍 Rechercher un livre par titre : Trouver rapidement un livre dans la base de données.
 📍 Afficher un graphique du taux d’emprunt par catégorie (Pie chart) : Visualiser les statistiques d'emprunt pour une évaluation rapide.
 
-**📌 Visualisation des Données
+## 📌 Visualisation des Données
 📊 Afficher un graphique en Pie Chart pour analyser le taux d’emprunt par catégorie, permettant d'identifier les livres les plus et les moins empruntés.
 
-## Fonctionnalités
-📌 Diagrammes UML
+
+## 📌 Diagrammes UML
 🎯 Diagramme de Classe
 
 
 <img width="484" alt="DiagrammeDeclasse" src="https://github.com/user-attachments/assets/9933b904-02b6-41ee-9b0b-483504ac674a" />
 
 
-**📌 Structure de la Base de Données
+##📌 Structure de la Base de Données
 🗄️ Modélisation des Tables
 ```sql
 CREATE TABLE Etudiant (

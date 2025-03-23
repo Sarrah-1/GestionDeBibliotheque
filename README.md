@@ -33,6 +33,11 @@ L'objectif de ce projet est de développer une application qui facilite la gesti
 <img width="484" alt="DiagrammeDeclasse" src="https://github.com/user-attachments/assets/9933b904-02b6-41ee-9b0b-483504ac674a" />
 
 
+📌 Diagramme de cas d'utilisation
+
+<img width="541" alt="Capture d’écran 2025-03-23 142348" src="https://github.com/user-attachments/assets/5523be19-f596-41f1-aaea-7813b8058c72" />
+
+
 ##📌 Structure de la Base de Données
 
 🗄️ Modélisation des Tables

@@ -26,6 +26,9 @@ L'objectif de ce projet est de développer une application qui facilite la gesti
 
 📊 Afficher un graphique en Pie Chart pour analyser le taux d’emprunt par catégorie, permettant d'identifier les livres les plus et les moins empruntés.
 
+## 📌 Architecture
+
+![Presentation Layer](https://github.com/user-attachments/assets/c5aafbb0-6387-4981-9084-8a32275b8dcc)
 
 ## 📌 Diagrammes UML
 🎯 Diagramme de Classe

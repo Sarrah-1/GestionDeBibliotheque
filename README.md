@@ -43,29 +43,31 @@ L'objectif de ce projet est de développer une application qui facilite la gesti
 
 🗄️ Modélisation des Tables
 ```sql
-CREATE TABLE Etudiant (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nom VARCHAR(50) NOT NULL,
-    prenom VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE
-);
-CREATE TABLE Livre (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    titre VARCHAR(100) NOT NULL,
+CREATE TABLE livre (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(50) NOT NULL,
     auteur VARCHAR(50) NOT NULL,
-    categorie ENUM('CONTE', 'AUTOBIOGRAPHIE', 'POLICIER', 'NOUVELLE') NOT NULL,
-    disponible BOOLEAN NOT NULL DEFAULT TRUE
+    categorie ENUM('roman', 'nouvelle', 'autobiographie', 'policier', 'romance') NOT NULL,
+    disponible TINYINT NOT NULL
 );
 
-CREATE TABLE EmpruntLivre (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    livre_id INT,
-    etudiant_id INT,
-    date_emprunt DATE NOT NULL,
-    date_retour DATE,
-    FOREIGN KEY (livre_id) REFERENCES Livre(id) ON DELETE CASCADE,
-    FOREIGN KEY (etudiant_id) REFERENCES Etudiant(id) ON DELETE CASCADE
+CREATE TABLE etudiant (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL
 );
+
+CREATE TABLE emprunt (
+    idEtudiant INT NOT NULL,
+    idLivre INT NOT NULL,
+    dateEmprunt DATE NOT NULL,
+    dateRetour DATE NOT NULL,
+    PRIMARY KEY (idEtudiant, idLivre),
+    FOREIGN KEY (idEtudiant) REFERENCES etudiant(id) ON DELETE CASCADE,
+    FOREIGN KEY (idLivre) REFERENCES livre(id) ON DELETE CASCADE
+);  
+
 CREATE TABLE user (
     login VARCHAR(100) NOT NULL PRIMARY KEY,
     password VARCHAR(100) NOT NULL,

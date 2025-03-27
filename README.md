@@ -91,16 +91,6 @@ CREATE TABLE user (
   
 ## Vidéo Démonstrative
 
-
-https://github.com/user-attachments/assets/ee6ed8d4-831b-45ee-b299-e68a075d0a41
-
-
-4444
-
-
-
-
-
 https://github.com/user-attachments/assets/b8f0a649-30ca-4885-af37-8ab3eb98095d
 
 
